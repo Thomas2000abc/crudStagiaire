@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier
+{% endblock %}
+
+{% block body %}
+
+	{%  if panier.lignesPanier | length == 0 %}
+		Le panier est vide !
+	{%  else %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Prix Unitaire</th>
+					<th>Quantité</th>
+					<th>Prix Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for ligne in panier.lignesPanier %}
+					<tr>
+						<td>{{ligne.produit.nom}}</td>
+						<td>{{ligne.produit.prix}}</td>
+						<td><input type="number" min="0" class="qteProduit" value="{{ligne.quantite}}" data-id="{{ligne.produit.id}}" data-prix="{{ligne.produit.prix}}"/></td>
+						<td class="prixTotal">{{ligne.produit.prix*ligne.quantite}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<script src="{{asset('js/script.js')}}"></script>
+	{% endif %}
+{% endblock %}
+
+
+{# Mon essai de tableau qui marche #}
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Panier!{% endblock %}
+
+{% block body %}
+    {{ dump(panier) }}
+    <table class="table">
+		<thead>
+			<tr>
+				<th>Nom Produit</th>
+				<th>Prix Unitaire</th>
+				<th>Quantité</th>
+				<th>Prix total </th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in 0..( panier.lignesPanier | length - 1) %}
+				<tr>
+					<td>{{panier.lignesPanier[i].produit.nom}}</td>
+					<td>{{panier.lignesPanier[i].produit.prix}} €</td>
+					<td>x{{panier.lignesPanier[i].quantite}}</td>
+                    <td>{{panier.lignesPanier[i].quantite  *  panier.lignesPanier[i].produit.prix }} €</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %} #}
+

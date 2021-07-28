@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PersonneController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{# {{ form(form) }} #}
+		{# <form> #}
+		{{ form_start(form, {'attr': {'novalidate': 'novalidate'} }
+		) }}
+		{{form_errors(form)}}
+			<div
+			class="form-group"> {# <label for="exampleInputEmail1">Email address</label> #}
+			{{form_label(form.nom, "Nom de la personne")}}
+			{# {{form_errors(form.nom)}} #}
+			{# <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> #}
+			{{form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom de la personne'}}
+		)}}
+		</div>
+			<div class="form-group"> {{form_label(form.prenom, "Prénom de la personne")}}
+			{# {{form_errors(form.prenom)}} #}
+			{# <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> #}
+			{{form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom de la personne'}}
+		)}}
+		</div>
+		{{form_widget(form.adresse)}}
+		{{form_widget(form.sports)}}
+
+		{{form_rest(form)}}
+		{# <button type="submit" class="btn btn-primary">Submit</button> #}
+		{# {{form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}
+																								)}} #}
+
+	{{form_end(form)}}
+</form>
+</div><script src="{{asset('js/script.js')}}"> </script>{% endblock %}
